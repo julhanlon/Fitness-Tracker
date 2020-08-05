@@ -15,10 +15,10 @@ module.exports = {
   getWorkout: (req, res) =>
     !req.query.id
       ? db.Workout.find({})
-          .then((allworkouts) => res.send(allworkouts))
+          .then((workouts) => res.send(workouts))
           .catch((err) => res.send(err))
       : db.Workout.findById(req.query.id)
-          .then((foundworkout) => res.send(foundworkout))
+          .then((foundWork) => res.send(foundWork))
           .catch((err) => res.send(err)),
 
   addExercise: async (req, res) => {
@@ -30,6 +30,7 @@ module.exports = {
       await workout.exercises.forEach((exercise) => {
         totalDuration += exercise.duration;
       });
+
       workout.totalDuration = totalDuration;
       await workout.save();
       res.send(workout);
@@ -41,5 +42,6 @@ module.exports = {
   deleteWorkout: (req, res) =>
     db.Workout.findByIdAndDelete(req.query.id)
       .then(() => res.send({ msg: "deleted workout" }))
-      .catch((err) => res.send(err)),
+      .catch((err) => res.send(err)
+      ),
 };
