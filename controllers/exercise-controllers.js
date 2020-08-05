@@ -1,6 +1,7 @@
 const db = require("../models/fitness");
 
 module.exports = {
+
   newWorkout: (req, res) => {
     db.Workout.create(req.body)
       .then((res) => {
@@ -24,6 +25,7 @@ module.exports = {
     try {
       const workout = await db.Workout.findById(req.params.id);
       workout.exercises.push(req.body);
+
       let totalDuration = 0;
       await workout.exercises.forEach((exercise) => {
         totalDuration += exercise.duration;
@@ -31,13 +33,13 @@ module.exports = {
       workout.totalDuration = totalDuration;
       await workout.save();
       res.send(workout);
-    } catch (error) {
-      res.send(error);
+    } catch (err) {
+      res.send(err);
     }
   },
 
   deleteWorkout: (req, res) =>
     db.Workout.findByIdAndDelete(req.query.id)
-      .then(() => res.send({ msg: "success" }))
+      .then(() => res.send({ msg: "deleted workout" }))
       .catch((err) => res.send(err)),
 };
