@@ -22,6 +22,6 @@ app.use(require("./routes/exercise-routes.js"));
 app.use(require("./routes/client-routes.js"));
 
 app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}!`);
+  console.log(`listening at http://localhost:${PORT}`);
 });
 
