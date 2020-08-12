@@ -1,13 +1,17 @@
 # Fitness Tracker
 
-## Description
-
-This application uses a Mongo databse and Express server to create, view, and track daily workouts. The user can create a workout that consists of exercises, reps, and duration of workout.
+![demo](public/assets/fitness.gif)
 
 ## Table of Contents
 
+- [Description](#Description)
 - [Installation](#installation)
 - [Usage](#usage)
+
+## Description
+
+This application uses a Mongo datbase and Express server to create, view, and track daily workouts. The user can create a workout that consists of exercises, reps, and duration of workout.
+
 
 ## Installation
 
