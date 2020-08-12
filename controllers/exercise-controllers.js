@@ -21,27 +21,27 @@ module.exports = {
           .then((foundWork) => res.send(foundWork))
           .catch((err) => res.send(err)),
 
-  addExercise: async (req, res) => {
-    try {
-      const workout = await db.Workout.findById(req.params.id);
-      workout.exercises.push(req.body);
-
-      let totalDuration = 0;
-      await workout.exercises.forEach((exercise) => {
-        totalDuration += exercise.duration;
-      });
-
-      workout.totalDuration = totalDuration;
-      await workout.save();
-      res.send(workout);
-    } catch (err) {
-      res.send(err);
-    }
-  },
-
   deleteWorkout: (req, res) =>
     db.Workout.findByIdAndDelete(req.query.id)
-      .then(() => res.send({ msg: "deleted workout" }))
+      .then(() => res.send({ msg: "deleted!" }))
       .catch((err) => res.send(err)
       ),
+
+      addExercise: async (req, res) => {
+        try {
+          const workout = await db.Workout.findById(req.params.id);
+          workout.exercises.push(req.body);
+    
+          let totalDuration = 0;
+          await workout.exercises.forEach((exercise) => {
+            totalDuration += exercise.duration;
+          });
+    
+          workout.totalDuration = totalDuration;
+          await workout.save();
+          res.send(workout);
+        } catch (err) {
+          res.send(err);
+        }
+      },
 };
