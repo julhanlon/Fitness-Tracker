@@ -5,6 +5,9 @@ router.post("/api/workouts", newWorkout);
 
 router.get("/api/workouts", getWorkout);
 
+router.get("/api/workouts/range", getWorkout);
+
+
 router.put("/api/workouts/:id", addExercise);
 
 

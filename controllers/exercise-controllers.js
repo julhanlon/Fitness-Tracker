@@ -1,9 +1,9 @@
-const db = require("../models/fitness");
+const Workout = require("../models/fitness");
 
 module.exports = {
 
   newWorkout: (req, res) => {
-    db.Workout.create(req.body)
+    Workout.create(req.body)
       .then((res) => {
         res.send(res);
       })
@@ -14,15 +14,15 @@ module.exports = {
 
   getWorkout: (req, res) =>
     !req.query.id
-      ? db.Workout.find({})
+      ? Workout.find({})
           .then((workouts) => res.send(workouts))
           .catch((err) => res.send(err))
-      : db.Workout.findById(req.query.id)
+      : Workout.findById(req.query.id)
           .then((workout) => res.send(workout))
           .catch((err) => res.send(err)),
 
   deleteWorkout: (req, res) =>
-    db.Workout.findByIdAndDelete(req.query.id)
+    Workout.findByIdAndDelete(req.query.id)
       .then(() => res.send({ msg: "deleted!" }))
       .catch((err) => res.send(err)
       ),
